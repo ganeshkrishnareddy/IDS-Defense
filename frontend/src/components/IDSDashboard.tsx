@@ -134,7 +134,7 @@ export default function IDSDashboard() {
         alerts.forEach(a => {
             counts[a.src_ip] = (counts[a.src_ip] || 0) + 1;
         });
-        return Object.entries(counts)
+        return (Object.entries(counts) as any)
             .sort(([, a]: any, [, b]: any) => b - a)
             .slice(0, 5);
     }, [alerts]);
@@ -144,7 +144,7 @@ export default function IDSDashboard() {
         alerts.forEach(a => {
             counts[a.threat_type] = (counts[a.threat_type] || 0) + 1;
         });
-        return Object.entries(counts).map(([name, value]) => ({ name, value }));
+        return (Object.entries(counts) as any).map(([name, value]: any) => ({ name, value }));
     }, [alerts]);
 
     const PIE_COLORS = ['#3B82F6', '#EF4444', '#F59E0B', '#10B981', '#8B5CF6'];
@@ -302,7 +302,7 @@ export default function IDSDashboard() {
                                             paddingAngle={5}
                                             dataKey="value"
                                         >
-                                            {threatDistribution.map((entry, index) => (
+                                            {threatDistribution.map((entry: any, index: number) => (
                                                 <Cell key={`cell-${index}`} fill={PIE_COLORS[index % PIE_COLORS.length]} />
                                             ))}
                                             {threatDistribution.length === 0 && <Cell fill="#ffffff05" />}
@@ -319,7 +319,7 @@ export default function IDSDashboard() {
                                 </div>
                             </div>
                             <div className="space-y-2 mt-4">
-                                {threatDistribution.slice(0, 3).map((item, i) => (
+                                {threatDistribution.slice(0, 3).map((item: any, i: number) => (
                                     <div key={item.name} className="flex items-center justify-between text-[11px]">
                                         <div className="flex items-center gap-2">
                                             <div className="w-1.5 h-1.5 rounded-full" style={{ backgroundColor: PIE_COLORS[i] }} />
@@ -340,7 +340,7 @@ export default function IDSDashboard() {
                                 Top Attacker IPs
                             </h3>
                             <div className="space-y-2">
-                                {topAttackers.length > 0 ? topAttackers.map(([ip, count]: any, i) => (
+                                {topAttackers.length > 0 ? (topAttackers as any).map(([ip, count]: any, i: number) => (
                                     <div key={ip} className="flex items-center justify-between p-3 bg-white/[0.02] border border-white/5 rounded-xl">
                                         <div className="flex items-center gap-3">
                                             <span className="text-[10px] text-white/20 font-black">#0{i + 1}</span>
