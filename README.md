@@ -31,7 +31,7 @@ IDS Defense is an enterprise-grade Intrusion Detection System that merges high-f
 - **Zero-Trust Ready**: Architecture built for encrypted, authenticated security ecosystems.
 - **Compliance**: Infrastructure aligned with NIST-800 and SOC2 standards.
 
-## �️ Step-by-Step Setup
+## 🛠️ Step-by-Step Setup
 
 ### Prerequisites
 - Python 3.9+
@@ -57,7 +57,7 @@ npm start -- --port 3200
 ```
 *The dashboard will be available at `http://localhost:3200`.*
 
-## � Deployment
+## 🚀 Deployment
 
 ### GitHub
 1. Create a repository named `IDS-Defense` on GitHub.
