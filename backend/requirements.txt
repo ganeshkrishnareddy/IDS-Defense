@@ -1,0 +1,13 @@
+fastapi
+uvicorn
+scapy
+pyshark
+pandas
+scikit-learn
+xgboost
+joblib
+python-dotenv
+websockets
+pydantic
+pydantic-settings
+psutil
