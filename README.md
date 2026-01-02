@@ -2,7 +2,7 @@
 
 **Deployed and maintained by P Ganesh Krishna Reddy | Engineering by ProgVision**
 
-[![Live Demo](https://img.shields.io/badge/Live-idsdefense.netlify.app-blue?style=for-the-badge&logo=netlify)](https://idsdefense.netlify.app)
+[![Live Demo](https://img.shields.io/badge/Live-ids--defense.netlify.app-blue?style=for-the-badge&logo=netlify)](https://ids-defense.netlify.app)
 [![GitHub](https://img.shields.io/badge/GitHub-IDS--Defense-black?style=for-the-badge&logo=github)](https://github.com/ganeshkrishnareddy/IDS-Defense)
 
 IDS Defense is an enterprise-grade Intrusion Detection System that merges high-frequency network telemetry with Machine Learning to identify and visualize security breaches in real-time.
@@ -72,7 +72,7 @@ git push -u origin main
 ```
 
 ### Netlify (Frontend)
-- **Site Name**: `idsdefense.netlify.app`
+- **Site Name**: `ids-defense.netlify.app`
 - **Build Command**: `npm run build`
 - **Publish Directory**: `.next`
 - **Note**: Ensure the `@netlify/plugin-nextjs` is enabled in your `netlify.toml`.
