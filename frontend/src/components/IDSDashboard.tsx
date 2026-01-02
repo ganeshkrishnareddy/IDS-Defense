@@ -82,7 +82,7 @@ export default function IDSDashboard() {
             setAlerts(prev => [data, ...prev].slice(0, 50));
             setLatency(data.inference_latency || 0);
 
-            setStats(prev => {
+            setStats((prev: any) => {
                 const newSeverity = data.severity === 'Critical' ? 'Critical' :
                     data.severity === 'High' && prev.severity !== 'Critical' ? 'High' :
                         prev.severity;
@@ -100,7 +100,7 @@ export default function IDSDashboard() {
             const m = Math.floor((diff % 3600000) / 60000).toString().padStart(2, '0');
             const s = Math.floor((diff % 60000) / 1000).toString().padStart(2, '0');
 
-            setStats(prev => ({
+            setStats((prev: any) => ({
                 ...prev,
                 prevScanned: prev.scanned,
                 prevThreats: prev.threats,
@@ -108,7 +108,34 @@ export default function IDSDashboard() {
                 uptime: `${h}:${m}:${s}`
             }));
 
-            setChartData(prev => {
+            // Standalone Demo Logic: Generate local alerts if the websocket is offline
+            if (status !== 'online' && Math.random() > 0.85) {
+                const types = ["DDoS", "SQL Injection", "Brute Force", "Port Scan", "XSS"];
+                const severities = ["Low", "Medium", "High", "Critical"];
+                const mockAlert = {
+                    timestamp: new Date().toISOString(),
+                    src_ip: `185.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}.${Math.floor(Math.random() * 255)}`,
+                    dst_ip: `10.0.0.${Math.floor(Math.random() * 255)}`,
+                    protocol: ["TCP", "UDP", "HTTP", "TLS"][Math.floor(Math.random() * 4)],
+                    threat_type: types[Math.floor(Math.random() * types.length)],
+                    severity: severities[Math.floor(Math.random() * severities.length)],
+                    confidence: 0.8 + (Math.random() * 0.19),
+                    detection_type: "ML-Anomaly",
+                    inference_latency: Math.floor(Math.random() * 12) + 4,
+                    model_version: "XGBoost v1.2",
+                    feature_snapshot: { packet_size: 1420, entropy: 0.88, flags: "SYN" }
+                };
+
+                setAlerts(prev => [mockAlert, ...prev].slice(0, 50));
+                setLatency(mockAlert.inference_latency);
+                setStats((prev: any) => ({
+                    ...prev,
+                    threats: prev.threats + 1,
+                    severity: mockAlert.severity === 'Critical' ? 'Critical' : prev.severity
+                }));
+            }
+
+            setChartData((prev: any) => {
                 const lastThreatCount = alerts.filter(a => {
                     const alertTime = new Date(a.timestamp).getTime();
                     return Date.now() - alertTime < 1000;
@@ -127,7 +154,7 @@ export default function IDSDashboard() {
             socket.close();
             clearInterval(interval);
         };
-    }, [alerts]);
+    }, [alerts, status]);
 
     const topAttackers = useMemo(() => {
         const counts: any = {};
@@ -166,10 +193,10 @@ export default function IDSDashboard() {
                         <h1 className="text-3xl font-extrabold tracking-tight bg-gradient-to-r from-white to-white/60 bg-clip-text text-transparent">
                             IDS Defense Dashboard
                         </h1>
-                        <div className={`px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-[0.2em] shadow-sm flex items-center gap-1.5 ${status === 'online' ? 'bg-green-500/10 text-green-500 border border-green-500/20' : 'bg-red-500/10 text-red-500 border border-red-500/20'
+                        <div className={`px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-[0.2em] shadow-sm flex items-center gap-1.5 ${status === 'online' ? 'bg-green-500/10 text-green-500 border border-green-500/20' : 'bg-orange-500/10 text-orange-500 border border-orange-500/20'
                             }`}>
-                            <div className={`w-1.5 h-1.5 rounded-full ${status === 'online' ? 'bg-green-500 animate-pulse' : 'bg-red-500'}`} />
-                            {status}
+                            <div className={`w-1.5 h-1.5 rounded-full ${status === 'online' ? 'bg-green-500 animate-pulse' : 'bg-orange-500 animate-pulse'}`} />
+                            {status === 'online' ? 'LIVE' : 'DEMO MODE'}
                         </div>
                     </div>
                     <p className="text-white/40 text-sm font-medium">
