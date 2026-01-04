@@ -80,6 +80,7 @@ git push -u origin main
 ## 🧾 Project Identity
 - **Created By**: P Ganesh Krishna Reddy ([Portfolio](https://pganeshreddy.netlify.app/))
 - **Engineering**: Deployed by **ProgVision** ([progvision.in](https://progvision.in/))
+- **Contact**: pganeshkrishnareddy@gmail.com
 - **Core Stack**: Next.js 15, FastAPI, Tailwind CSS, Scapy, XGBoost.
 
 ---
