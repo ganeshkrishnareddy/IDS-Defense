@@ -78,7 +78,7 @@ git push -u origin main
 - **Note**: Ensure the `@netlify/plugin-nextjs` is enabled in your `netlify.toml`.
 
 ## 🧾 Project Identity
-- **Created By**: P Ganesh Krishna Reddy ([Portfolio](https://pganeshreddy.netlify.app/))
+- **Created By**: P Ganesh Krishna Reddy ([Portfolio](https://pganeshkrishnareddy.vercel.app/))
 - **Engineering**: Deployed by **ProgVision** ([progvision.in](https://progvision.in/))
 - **Contact**: pganeshkrishnareddy@gmail.com
 - **Core Stack**: Next.js 15, FastAPI, Tailwind CSS, Scapy, XGBoost.

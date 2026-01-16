@@ -42,7 +42,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 const IDENTITY = {
     project: "Intrusion Detection System (IDS)",
     developer: "P Ganesh Krishna Reddy",
-    portfolio: "https://pganeshreddy.netlify.app/",
+    portfolio: "https://pganeshkrishnareddy.vercel.app/",
     deployment: "ProgVision",
     deployment_url: "https://progvision.in/"
 };
